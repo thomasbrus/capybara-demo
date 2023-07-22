@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .link {
+    @apply text-blue-500 hover:text-blue-600 underline;
+  }
+
+  .h1 {
+    @apply text-xl font-bold mb-4;
+  }
+
+  .h2 {
+    @apply text-lg font-bold mb-3;
+  }
+
+  .h3 {
+    @apply text-base font-bold mb-2;
+  }
+
+  .h4 {
+    @apply text-sm font-bold mb-2;
+  }
+
+  .label {
+    @apply font-medium block;
+  }
+
+  .form {
+    @apply max-w-md;
+  }
+
+  .form-field {
+    @apply mb-4;
+  }
+
+  .form-error-explanation {
+    @apply mb-4;
+  }
+
+  .form-actions {
+    @apply mt-8;
+  }
+
+  .form-label {
+    @apply font-medium mb-2 block;
+  }
+
+  .form-input {
+    @apply border rounded p-2 w-full;
+  }
+
+  .button {
+    @apply px-3 py-2 rounded cursor-pointer font-medium;
+    @apply text-gray-700 bg-gray-200;
+  }
+
+  .button--primary {
+    @apply bg-blue-500 text-white;
+  }
+
+  .button--danger {
+    @apply bg-red-500 text-white;
+  }
+
+  .alert {
+    @apply p-4 rounded;
+  }
+
+  .alert--danger {
+    @apply text-red-900 bg-red-100;
+  }
+
+  .alert--success {
+    @apply text-green-900 bg-green-50;
+  }
+}

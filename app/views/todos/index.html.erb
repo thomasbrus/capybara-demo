@@ -1,0 +1,32 @@
+<% if notice %>
+  <p class="alert alert--success mb-4"><%= notice %></p>
+<% end %>
+
+
+<header class="mb-4">
+  <h1 class="h1">Todos</h1>
+</header>
+
+<table class="w-full">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="p-2 font-medium text-left">Title</th>
+      <th class="p-2 font-medium text-left">Description</th>
+      <th class="p-2 font-medium text-left">Deadline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td class="p-2 border-t"><input type="checkbox" /></td>
+        <td class="p-2 border-t"><%= link_to todo.title, todo, class: 'link' %></td>
+        <td class="p-2 border-t"><%= todo.description.presence || '-' %></td>
+        <td class="p-2 border-t"><%= todo.deadline.presence || '-' %></td>
+      </tr>
+    <% end %>
+</table>
+
+<footer class="mt-8">
+  <%= link_to "New todo", new_todo_path, class: 'button button--primary' %>
+</footer>
