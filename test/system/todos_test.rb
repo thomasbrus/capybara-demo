@@ -5,7 +5,9 @@ class TodosTest < ApplicationSystemTestCase
 
   test 'visiting the index' do
     visit todos_url
-    assert_selector 'h1', text: 'Todos'
+
+    assert_selector :gridcell, @todo.title
+    assert_selector :gridcell, @todo.description
   end
 
   test 'should create todo' do
@@ -18,8 +20,11 @@ class TodosTest < ApplicationSystemTestCase
 
     click_on 'Create Todo'
 
-    assert_text 'Todo was successfully created'
-    click_on 'Back'
+    assert_selector :alert, 'Todo was successfully created'
+
+    within_banner 'Links' do
+      assert_selector :link, 'Back to todos'
+    end
   end
 
   test 'should update todo' do
@@ -32,14 +37,31 @@ class TodosTest < ApplicationSystemTestCase
 
     click_on 'Update Todo'
 
-    assert_text 'Todo was successfully updated'
-    click_on 'Back'
+    assert_selector :alert, 'Todo was successfully updated'
+
+    within_banner 'Links' do
+      assert_selector :link, 'Back to todos'
+    end
   end
 
   test 'should destroy todo' do
     visit todo_url(@todo)
-    click_on 'Destroy', match: :first
 
-    assert_text 'Todo was successfully destroyed'
+    within_contentinfo 'Actions' do
+      click_on 'Destroy', match: :first
+    end
+
+    debugger
+
+    assert_selector :alert, 'Todo was successfully destroyed'
+  end
+
+  test 'should show todo' do
+    visit todo_url(@todo)
+
+    within :section, @todo.title do
+      assert_selector 'h1', text: @todo.title
+      assert_selector :item, 'description', text: @todo.description
+    end
   end
 end

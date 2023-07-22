@@ -1,14 +1,12 @@
-<% if notice %>
-  <p class="alert alert--success mb-4"><%= notice %></p>
-<% end %>
+<%= render 'shared/notice' %>
 
-<header class="mb-4">
+<header class="mb-4" aria-label="Links">
   <%= link_to "← Back to todos", todos_path, class: 'link' %>
 </header>
 
 <%= render @todo %>
 
-<footer class="mt-8 flex gap-2">
+<footer class="mt-8 flex gap-2" aria-label="Actions">
   <%= button_to "Destroy", @todo, method: :delete, class: 'button button--danger' %>
   <%= link_to "Edit this todo", edit_todo_path(@todo), class: 'button button--primary' %>
 </footer>

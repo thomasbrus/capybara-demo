@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/citizensadvice/capybara_accessible_selectors
+  revision: da34e96c4787bd7705c477fe2e70f993bfad8f5c
+  branch: main
+  specs:
+    capybara_accessible_selectors (0.10.0)
+      capybara (>= 3.36.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -215,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  capybara_accessible_selectors!
   cssbundling-rails
   debug
   jbuilder

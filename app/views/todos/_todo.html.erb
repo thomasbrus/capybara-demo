@@ -1,9 +1,8 @@
-<div id="<%= dom_id todo %>">
+<section>
   <h1 class="h1"><%= todo.title %></h1>
 
-  <p class="label mb-1">Description</p>
-
-  <p class="text-gray-700">
-    <%= todo.description.presence || 'No description.' %>
-  </p>
-</div>
+  <dt>
+    <dl class="label mb-1">Description</dl>
+    <dd itemprop="description"><%= todo.description.presence || 'No description.' %></dd>
+  </dt>
+</section>

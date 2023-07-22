@@ -1,13 +1,10 @@
-<% if notice %>
-  <p class="alert alert--success mb-4"><%= notice %></p>
-<% end %>
-
+<%= render 'shared/notice' %>
 
 <header class="mb-4">
   <h1 class="h1">Todos</h1>
 </header>
 
-<table class="w-full">
+<table class="w-full" role="grid">
   <thead>
     <tr>
       <th></th>
