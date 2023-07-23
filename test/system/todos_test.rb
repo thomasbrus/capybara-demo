@@ -11,6 +11,8 @@ class TodosTest < ApplicationSystemTestCase
   end
 
   test 'should create todo' do
+    use_selenium
+
     visit todos_url
     click_on 'New todo'
 
@@ -51,15 +53,13 @@ class TodosTest < ApplicationSystemTestCase
       click_on 'Destroy', match: :first
     end
 
-    debugger
-
     assert_selector :alert, 'Todo was successfully destroyed'
   end
 
   test 'should show todo' do
     visit todo_url(@todo)
 
-    within :section, @todo.title do
+    within_section @todo.title do
       assert_selector 'h1', text: @todo.title
       assert_selector :item, 'description', text: @todo.description
     end
