@@ -61,18 +61,26 @@ class TodosController < ApplicationController
   def finish
     @todo.finish!
     set_counts
+
+    locals = { finished_count: @finished_count, total_count: @total_count, todo: @todo }
+
     render turbo_stream: [
-             turbo_stream.replace('count', partial: 'todos/count', locals: { finished_count: @finished_count, total_count: @total_count }),
-             turbo_stream.replace(@todo, partial: 'todos/todo', locals: { todo: @todo })
+             turbo_stream.replace('count', partial: 'todos/count', locals: locals),
+             turbo_stream.replace('progress', partial: 'todos/progress', locals: locals),
+             turbo_stream.replace(@todo, partial: 'todos/todo', locals: locals)
            ]
   end
 
   def unfinish
     @todo.unfinish!
     set_counts
+
+    locals = { finished_count: @finished_count, total_count: @total_count, todo: @todo }
+
     render turbo_stream: [
-             turbo_stream.replace('count', partial: 'todos/count', locals: { finished_count: @finished_count, total_count: @total_count }),
-             turbo_stream.replace(@todo, partial: 'todos/todo', locals: { todo: @todo })
+             turbo_stream.replace('count', partial: 'todos/count', locals: locals),
+             turbo_stream.replace('progress', partial: 'todos/progress', locals: locals),
+             turbo_stream.replace(@todo, partial: 'todos/todo', locals: locals)
            ]
   end
 

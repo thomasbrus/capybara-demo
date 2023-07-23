@@ -9,8 +9,6 @@ class TodosTest < ApplicationSystemTestCase
   test 'should display todos on the index page' do
     visit todos_url
 
-    assert_selector 'h1', text: 'Todos (0/2)'
-
     assert_selector :gridcell, @todo1.title, rowindex: 2
     assert_selector :gridcell, @todo1.description, rowindex: 2
     assert_selector :gridcell, @todo1.assignee, rowindex: 2
@@ -18,6 +16,15 @@ class TodosTest < ApplicationSystemTestCase
     assert_selector :gridcell, @todo2.title, rowindex: 3
     assert_selector :gridcell, @todo2.description, rowindex: 3
     assert_selector :gridcell, @todo2.assignee, rowindex: 3
+  end
+
+  test 'it should display todos progress' do
+    @todo1.finish!
+
+    visit todos_url
+
+    assert_selector 'h1', text: 'Todos (1/2)'
+    assert_selector :element, role: 'progress', aria: { label: 'Todos completed', valuenow: '50.0' }
   end
 
   test 'should display todo links in table on the index page' do
@@ -38,6 +45,7 @@ class TodosTest < ApplicationSystemTestCase
     check 'Finish todo', match: :first
 
     assert_selector 'h1', text: 'Todos (1/2)'
+    assert_selector :element, role: 'progress', aria: { label: 'Todos completed', valuenow: '50.0' }
 
     within :gridcell, colindex: 1, rowindex: 2 do
       assert_selector :checkbox, checked: true
@@ -59,6 +67,7 @@ class TodosTest < ApplicationSystemTestCase
     uncheck 'Finish todo', match: :first
 
     assert_selector 'h1', text: 'Todos (0/2)'
+    assert_selector :element, role: 'progress', aria: { label: 'Todos completed', valuenow: '0.0' }
 
     within :gridcell, colindex: 1, rowindex: 2 do
       assert_selector :checkbox, checked: false

@@ -1,7 +1,8 @@
 <%= render 'shared/notice' %>
 
-<header class="mb-4">
-  <h1 class="h1">Todos <%= render 'count', finished_count: @finished_count, total_count: @total_count %></h1>
+<header class="mb-4 flex justify-between items-center gap-4">
+  <h1 class="h1 mb-0">Todos <%= render 'count', finished_count: @finished_count, total_count: @total_count %></h1>
+  <%= render 'progress', finished_count: @finished_count, total_count: @total_count %>
 </header>
 
 <table class="w-full" role="grid">
