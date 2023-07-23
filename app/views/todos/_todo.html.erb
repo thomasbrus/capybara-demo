@@ -2,7 +2,7 @@
   <td class="border-t">
     <%= form_with(model: todo, method: :put, url: todo.finished? ? unfinish_todo_path(todo) : finish_todo_path(todo)) do |f| %>
       <label class="p-2 -m-2 block cursor-pointer">
-        <%= f.check_box :finished?, class: 'form-checkbox', onclick: 'this.form.requestSubmit()' %>
+        <%= f.check_box :finished?, class: 'form-checkbox', onclick: 'this.form.requestSubmit()', role: 'switch', aria: { label: 'Finish todo' } %>
       </label>
     <% end %>
   </td>

@@ -1,15 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   title: Do groceries
   description: Apples, bananas, oranges, and strawberries
-  finished_at: 2023-07-22
   assignee: User1
-  deadline: 2023-07-22
+  finished_at:
+  deadline:
 
 two:
+  id: 2
   title: Clean bedroom
   description: Clean sheets, vacuum, and dust
-  finished_at: 2023-07-22
   assignee: User2
-  deadline: 2023-07-22
+  finished_at:
+  deadline:

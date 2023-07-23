@@ -3,7 +3,7 @@ class TodosController < ApplicationController
 
   # GET /todos or /todos.json
   def index
-    @todos = Todo.order(:created_at)
+    @todos = Todo.order(:created_at, :id)
     set_counts
   end
 
