@@ -48,7 +48,15 @@
   }
 
   .form-input {
-    @apply border rounded p-2 w-full;
+    @apply border-gray-200 rounded w-full;
+  }
+
+  .form-select {
+    @apply border-gray-200 rounded w-full;
+  }
+
+  .form-textarea {
+    @apply border-gray-200 rounded w-full;
   }
 
   .button {
