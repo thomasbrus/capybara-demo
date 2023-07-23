@@ -1,47 +1,43 @@
-require "test_helper"
+require 'test_helper'
 
 class TodosControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @todo = todos(:one)
-  end
+  setup { @todo = todos(:one) }
 
-  test "should get index" do
+  test 'should get index' do
     get todos_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_todo_url
     assert_response :success
   end
 
-  test "should create todo" do
-    assert_difference("Todo.count") do
-      post todos_url, params: { todo: { deadline: @todo.deadline, description: @todo.description, finished_at: @todo.finished_at, title: @todo.title } }
+  test 'should create todo' do
+    assert_difference('Todo.count') do
+      post todos_url, params: { todo: { deadline: @todo.deadline, description: @todo.description, title: @todo.title } }
     end
 
     assert_redirected_to todo_url(Todo.last)
   end
 
-  test "should show todo" do
+  test 'should show todo' do
     get todo_url(@todo)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_todo_url(@todo)
     assert_response :success
   end
 
-  test "should update todo" do
-    patch todo_url(@todo), params: { todo: { deadline: @todo.deadline, description: @todo.description, finished_at: @todo.finished_at, title: @todo.title } }
+  test 'should update todo' do
+    patch todo_url(@todo), params: { todo: { deadline: @todo.deadline, description: @todo.description, title: @todo.title } }
     assert_redirected_to todo_url(@todo)
   end
 
-  test "should destroy todo" do
-    assert_difference("Todo.count", -1) do
-      delete todo_url(@todo)
-    end
+  test 'should destroy todo' do
+    assert_difference('Todo.count', -1) { delete todo_url(@todo) }
 
     assert_redirected_to todos_url
   end

@@ -4,7 +4,19 @@
   <%= link_to "← Back to todos", todos_path, class: 'link' %>
 </header>
 
-<%= render @todo %>
+<main>
+  <h1 class="h1"><%= @todo.title %></h1>
+
+  <dt>
+    <dl class="label mb-1">Description</dl>
+    <dd itemprop="description"><%= @todo.description.presence || tag.span('No description', class: 'text-muted') %></dd>
+  </dt>
+
+  <dt class="mt-4">
+    <dl class="label mb-1">Assignee</dl>
+    <dd itemprop="assignee"><%= @todo.assignee.presence || tag.span('No assignee', class: 'text-muted') %></dd>
+  </dt>
+</main>
 
 <footer class="mt-8 flex gap-2" aria-label="Actions">
   <%= button_to "Destroy", @todo, method: :delete, class: 'button button--danger' %>

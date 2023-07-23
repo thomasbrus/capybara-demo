@@ -10,18 +10,12 @@
       <th></th>
       <th class="p-2 font-medium text-left">Title</th>
       <th class="p-2 font-medium text-left">Description</th>
+      <th class="p-2 font-medium text-left">Assignee</th>
       <th class="p-2 font-medium text-left">Deadline</th>
     </tr>
   </thead>
   <tbody>
-    <% @todos.each do |todo| %>
-      <tr>
-        <td class="p-2 border-t"><input type="checkbox" /></td>
-        <td class="p-2 border-t"><%= link_to todo.title, todo, class: 'link' %></td>
-        <td class="p-2 border-t"><%= todo.description.presence || '-' %></td>
-        <td class="p-2 border-t"><%= todo.deadline.presence || '-' %></td>
-      </tr>
-    <% end %>
+    <%= render @todos %>
 </table>
 
 <footer class="mt-8">

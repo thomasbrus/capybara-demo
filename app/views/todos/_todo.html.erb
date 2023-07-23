@@ -1,8 +1,7 @@
-<main>
-  <h1 class="h1"><%= todo.title %></h1>
-
-  <dt>
-    <dl class="label mb-1">Description</dl>
-    <dd itemprop="description"><%= todo.description.presence || 'No description.' %></dd>
-  </dt>
-</main>
+<tr>
+  <td class="p-2 border-t"><input type="checkbox" /></td>
+  <td class="p-2 border-t"><%= link_to todo.title, todo, class: 'link' %></td>
+  <td class="p-2 border-t"><%= todo.description.presence || tag.span('-', class: 'text-muted') %></td>
+  <td class="p-2 border-t"><%= todo.assignee.presence || tag.span('-', class: 'text-muted') %></td>
+  <td class="p-2 border-t"><%= todo.deadline.presence || tag.span('-', class: 'text-muted') %></td>
+</tr>

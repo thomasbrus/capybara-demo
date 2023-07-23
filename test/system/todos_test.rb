@@ -8,6 +8,8 @@ class TodosTest < ApplicationSystemTestCase
 
     assert_selector :gridcell, @todo.title
     assert_selector :gridcell, @todo.description
+    assert_selector :gridcell, @todo.assignee
+    assert_selector :gridcell, @todo.deadline
   end
 
   test 'should create todo' do
@@ -18,6 +20,7 @@ class TodosTest < ApplicationSystemTestCase
 
     fill_in 'Title', with: @todo.title
     fill_in 'Description', with: @todo.description
+    select @todo.assignee, from: 'Assignee'
     fill_in 'Deadline', with: @todo.deadline
 
     click_on 'Create Todo'
@@ -35,7 +38,10 @@ class TodosTest < ApplicationSystemTestCase
 
     fill_in 'Title', with: @todo.title
     fill_in 'Description', with: @todo.description
+    select @todo.assignee, from: 'Assignee'
     fill_in 'Deadline', with: @todo.deadline
+
+    binding.pry
 
     click_on 'Update Todo'
 
@@ -62,6 +68,7 @@ class TodosTest < ApplicationSystemTestCase
     within_section @todo.title do
       assert_selector 'h1', text: @todo.title
       assert_selector :item, 'description', text: @todo.description
+      assert_selector :item, 'assignee', text: @todo.assignee
     end
   end
 end
