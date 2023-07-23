@@ -59,6 +59,10 @@
     @apply border-gray-200 rounded w-full;
   }
 
+  .form-checkbox {
+    @apply border-gray-400 rounded;
+  }
+
   .button {
     @apply px-3 py-2 rounded cursor-pointer font-medium;
     @apply text-gray-700 bg-gray-200;

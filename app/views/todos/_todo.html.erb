@@ -1,6 +1,12 @@
-<tr>
-  <td class="p-2 border-t"><input type="checkbox" /></td>
-  <td class="p-2 border-t"><%= link_to todo.title, todo, class: 'link' %></td>
+<tr id="<%= dom_id(todo) %>">
+  <td class="border-t">
+    <%= form_with(model: todo, method: :put, url: todo.finished? ? unfinish_todo_path(todo) : finish_todo_path(todo)) do |f| %>
+      <label class="p-2 -m-2 block cursor-pointer">
+        <%= f.check_box :finished?, class: 'form-checkbox', onclick: 'this.form.requestSubmit()' %>
+      </label>
+    <% end %>
+  </td>
+  <td class="p-2 border-t"><%= link_to todo.title, todo, class: ['link', ('text-muted hover:text-muted line-through' if todo.finished?)] %></td>
   <td class="p-2 border-t"><%= todo.description.presence || tag.span('-', class: 'text-muted') %></td>
   <td class="p-2 border-t"><%= todo.assignee.presence || tag.span('-', class: 'text-muted') %></td>
   <td class="p-2 border-t"><%= todo.deadline.presence || tag.span('-', class: 'text-muted') %></td>

@@ -1,7 +1,7 @@
 <%= render 'shared/notice' %>
 
 <header class="mb-4">
-  <h1 class="h1">Todos</h1>
+  <h1 class="h1">Todos <%= render 'count', finished_count: @finished_count, total_count: @total_count %></h1>
 </header>
 
 <table class="w-full" role="grid">

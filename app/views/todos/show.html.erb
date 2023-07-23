@@ -5,7 +5,7 @@
 </header>
 
 <main>
-  <h1 class="h1"><%= @todo.title %></h1>
+  <%= tag.h1(@todo.title, class: ['h1', ('text-muted line-through' if @todo.finished?)]) %>
 
   <dt>
     <dl class="label mb-1">Description</dl>

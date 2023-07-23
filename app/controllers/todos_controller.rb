@@ -1,9 +1,10 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show edit update destroy]
+  before_action :set_todo, only: %i[show edit update destroy finish unfinish]
 
   # GET /todos or /todos.json
   def index
-    @todos = Todo.all
+    @todos = Todo.order(:created_at)
+    set_counts
   end
 
   # GET /todos/1 or /todos/1.json
@@ -57,11 +58,34 @@ class TodosController < ApplicationController
     end
   end
 
+  def finish
+    @todo.finish!
+    set_counts
+    render turbo_stream: [
+             turbo_stream.replace('count', partial: 'todos/count', locals: { finished_count: @finished_count, total_count: @total_count }),
+             turbo_stream.replace(@todo, partial: 'todos/todo', locals: { todo: @todo })
+           ]
+  end
+
+  def unfinish
+    @todo.unfinish!
+    set_counts
+    render turbo_stream: [
+             turbo_stream.replace('count', partial: 'todos/count', locals: { finished_count: @finished_count, total_count: @total_count }),
+             turbo_stream.replace(@todo, partial: 'todos/todo', locals: { todo: @todo })
+           ]
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_todo
     @todo = Todo.find(params[:id])
+  end
+
+  def set_counts
+    @finished_count = Todo.finished.count
+    @total_count = Todo.count
   end
 
   # Only allow a list of trusted parameters through.
