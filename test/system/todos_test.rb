@@ -24,7 +24,7 @@ class TodosTest < ApplicationSystemTestCase
     visit todos_url
 
     assert_selector 'h1', text: 'Todos (1/2)'
-    assert_selector :element, role: 'progress', aria: { label: 'Todos completed', valuenow: '50.0' }
+    assert_selector :progressbar, 'Todos completed', aria: { valuenow: '50.0' }
   end
 
   test 'should display todo links in table on the index page' do
@@ -45,7 +45,7 @@ class TodosTest < ApplicationSystemTestCase
     check 'Finish todo', match: :first
 
     assert_selector 'h1', text: 'Todos (1/2)'
-    assert_selector :element, role: 'progress', aria: { label: 'Todos completed', valuenow: '50.0' }
+    assert_selector :progressbar, 'Todos completed', aria: { valuenow: '50.0' }
 
     within :gridcell, colindex: 1, rowindex: 2 do
       assert_selector :checkbox, checked: true
@@ -67,7 +67,7 @@ class TodosTest < ApplicationSystemTestCase
     uncheck 'Finish todo', match: :first
 
     assert_selector 'h1', text: 'Todos (0/2)'
-    assert_selector :element, role: 'progress', aria: { label: 'Todos completed', valuenow: '0.0' }
+    assert_selector :progressbar, 'Todos completed', aria: { valuenow: '0.0' }
 
     within :gridcell, colindex: 1, rowindex: 2 do
       assert_selector :checkbox, checked: false
